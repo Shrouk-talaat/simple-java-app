@@ -1,21 +1,21 @@
-node {
-    // Checkout the code from GitHub
-    git branch: 'main', url: 'https://github.com/Shrouk-talaat/simple-java-app.git'
+pipeline {
+    agent any
 
-    stage('build') {
-        try {
-            sh 'echo "build stage"'
-        } catch (Exception e) {
-            sh 'echo "exception found"'
-            throw e // Important to re-throw to fail the build properly
+    stages {
+        stage('build') {
+            steps {
+                script {
+                    echo 'build in progress'
+                }
+            }
         }
-    }
 
-    stage('test') {
-        if (env.BRANCH_NAME == "feat") {
-            sh 'echo "test stage"'
-        } else {
-            sh 'echo "skip test stage"'
+        stage('test') {
+            steps {
+                script {
+                    echo 'test in progress'
+                }
+            }
         }
     }
 }
